@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const MyAvatar = (props) => {
+const MyAvatar = props => {
   const classes = useStyles();
   return (
       <Grid 

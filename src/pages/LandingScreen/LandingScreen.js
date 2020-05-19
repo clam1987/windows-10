@@ -3,6 +3,7 @@ import Wilson from "../../assets/json/Wilson.json";
 import MyAvatar from "../../components/MyAvatar/MyAvatar";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+import PinForm from "../../components/PinForm/PinForm"
 import { makeStyles } from "@material-ui/core/styles";
 import background from "../../assets/img/beach.jpg";
 console.log(Wilson);
@@ -28,6 +29,7 @@ const LandingScreen = () => {
     <Grid container className={classes.root}>
       <Paper className={classes.loginScreen}>
         <MyAvatar profileName={Wilson.PicFileName} src={Wilson.AvatarPic} />
+        <PinForm />
       </Paper>
     </Grid>
   );
