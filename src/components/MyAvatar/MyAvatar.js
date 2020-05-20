@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(27),
   },
   avatarCenter: {
-    marginTop: "25vh"
+    paddingLeft: "30%"
   }
 }));
 
@@ -18,9 +18,9 @@ const MyAvatar = props => {
   return (
       <Grid 
         container 
-        direction="column" 
-        justify="center" 
-        alignItems="center"
+        // direction="column" 
+        // justify="center" 
+        // alignItems="center"
         className={classes.avatarCenter}
       >
     <Grid item md={2}>

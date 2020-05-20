@@ -1,22 +1,15 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import FormHelperText from "@material-ui/core/FormHelperText"
 import {
-  fade,
-  ThemeProvider,
-  withStyles,
   makeStyles,
-  createMuiTheme,
 } from "@material-ui/core/styles";
 import InputBase from "@material-ui/core/InputBase";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import IconButton from "@material-ui/core/IconButton";
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import DirectionsIcon from '@material-ui/icons/Directions';
+import Loading from "../Loading/Loading";
 import  "./PinForm.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -37,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
   },
   divider: {
     height: 44,
-    // margin: 4,
   },
   margin: {
     display: "flex",
@@ -49,52 +41,38 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const BootstrapInput = withStyles((theme) => ({
-  root: {
-    "label + &": {
-      marginTop: theme.spacing(3),
-    },
-  },
-  input: {
-    marginLeft: theme.spacing(1),
-    flex:1,
-    borderRadius: 1,
-    position: "relative",
-    backgroundColor: "white",
-    border: "2px solid white",
-    fontSize: 16,
-    width: "auto",
-    padding: "5px 3em 5px 0.5em",
-    transition: theme.transitions.create("border-color"),
-    // Use the system font instead of the default Roboto font.
-    fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(","),
-    "&:focus": {
-      borderColor: "white",
-    },
-  },
-}))(InputBase);
 
 const PinForm = () => {
-  const [input, setInput] = useState();
+  const [input, setInput] = useState("");
+  const [hintmsg, setHintMsg] = useState("Hint*: The Pin is 0000");
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
   const classes = useStyles();
   const handleChange = e => {
     const { name, value } = e.target;
     setInput({
       [name]: value
-    })
-    // console.log(input)
+    });
   }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if(input.input === "0000") {
+      setLoading(true);
+      setInterval(() => {
+        history.push("/desktop")
+      }, 5000);
+    } else {
+      setHintMsg("Pleasae input the correct password, Hint* the password is 0000");
+    }
+  }
+
+  // if(loading === "true") {
+  //   return <Loading />
+  // } else {
+  //   return false;
+  // }
+
   return (
     <>
     <Paper component="form" className={classes.root}>
@@ -102,29 +80,17 @@ const PinForm = () => {
       className={classes.input}
       placeholder="Enter your PIN"
       onChange={handleChange}
+      name="input"
     />
     <Divider className={classes.divider} orientation="vertical" />
-    <IconButton color="primary" className={`${classes.iconButton} btn-background`} aria-label="enter">
+    <IconButton color="primary" className={`${classes.iconButton} btn-background`} aria-label="enter" type="submit" onClick={handleSubmit}>
       <ArrowForwardIcon className={classes.helperColor}/>
     </IconButton>
   </Paper>
-    <FormHelperText id="my-helper-text" className={classes.margin}>Hint*: The Pin is 0000</FormHelperText>
+  <FormHelperText id="my-helper-text" className={classes.margin}>{hintmsg}</FormHelperText>
+  {/* {loading ? <Loading /> : null} */}
+  <Loading />
   </>
-    // <>
-    //   <FormControl className={classes.margin}>
-    //     <BootstrapInput
-    //       name="pin"
-    //       autoFocus
-    //       id="bootstrap-input"
-    //       color="secondary"
-    //       onChange={handleChange}
-    //       placeholder="Password"
-    //     />
-    //     <Divider className={classes.divider} orientation="vertical" />
-    //     <IconButton><ArrowForwardIcon /></IconButton>
-    //   <FormHelperText id="my-helper-text" className={classes.helperColor}>Hint*: The Pin is 0000</FormHelperText>
-    //   </FormControl>
-    // </>
   );
 };
 
