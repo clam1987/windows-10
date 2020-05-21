@@ -1,11 +1,11 @@
 import React from "react";
-import Wilson from "../../assets/json/Wilson.json";
-import MyAvatar from "../../components/MyAvatar/MyAvatar";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import background from "../../assets/img/beach.jpg";
-console.log(Wilson);
+import LoginModal from "../../components/LoginModal/LoginModal"
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,7 +27,7 @@ const LandingScreen = () => {
   return (
     <Grid container className={classes.root}>
       <Paper className={classes.loginScreen}>
-        <MyAvatar profileName={Wilson.PicFileName} src={Wilson.AvatarPic} />
+      <LoginModal />
       </Paper>
     </Grid>
   );
