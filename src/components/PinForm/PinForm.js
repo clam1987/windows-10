@@ -56,12 +56,18 @@ const PinForm = () => {
   }
 
   const handleSubmit = e => {
+    const avatarEl = document.querySelector(".avatar-container");
+    const nameEl = document.querySelector(".name-container");
     e.preventDefault();
     if(input.input === "0000") {
+      avatarEl.style.paddingLeft = "9%"
+      nameEl.style.marginBottom = ".5em"
       setLoading(true);
+      setInput("")
       setInterval(() => {
-        history.push("/desktop")
-      }, 5000);
+        // history.push("/desktop")
+        window.location.href = "/desktop"
+      }, 2000);
     } else {
       setHintMsg("Pleasae input the correct password, Hint* the password is 0000");
     }
@@ -75,12 +81,14 @@ const PinForm = () => {
 
   return (
     <>
+    {loading === false ? <>
     <Paper component="form" className={classes.root}>
     <InputBase
       className={classes.input}
       placeholder="Enter your PIN"
       onChange={handleChange}
       name="input"
+      defaultValue=""
     />
     <Divider className={classes.divider} orientation="vertical" />
     <IconButton color="primary" className={`${classes.iconButton} btn-background`} aria-label="enter" type="submit" onClick={handleSubmit}>
@@ -88,8 +96,8 @@ const PinForm = () => {
     </IconButton>
   </Paper>
   <FormHelperText id="my-helper-text" className={classes.margin}>{hintmsg}</FormHelperText>
-  {/* {loading ? <Loading /> : null} */}
-  <Loading />
+  </> : null}
+  {loading ? <Loading /> : null}
   </>
   );
 };

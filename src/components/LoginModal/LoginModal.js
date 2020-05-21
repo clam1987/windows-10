@@ -8,7 +8,7 @@ import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is requir
 import PinForm from "../../components/PinForm/PinForm";
 import MyAvatar from "../../components/MyAvatar/MyAvatar";
 import Wilson from "../../assets/json/Wilson.json";
-import DateTime from "../../components/DateTime/DateTime"
+import DateTime from "../../components/DateTime/DateTime";
 import "./LoginModal.css"
 
 const useStyles = makeStyles((theme) => ({
@@ -26,11 +26,15 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
-  white: {
+  name: {
     display: 'flex',
+    direction: "column",
     alignItems: 'center',
     justifyContent: 'center',
     color: "white"
+  },
+  alignment: {
+    color: "blue",
   }
 }));
 
@@ -68,6 +72,7 @@ Fade.propTypes = {
 const SpringModal = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   const handleOpen = () => {
     setOpen(true);
@@ -97,8 +102,8 @@ const handleClose = () => {
       >
         <Fade in={open}>
             <MyAvatar profileName={Wilson.PicFileName} src={Wilson.AvatarPic} />
-            <Typography variant="h3" className={classes.white}>Wilson Lam</Typography>
-            <PinForm />
+            <Typography variant="h3" className={`${classes.name} name-container`}>Wilson Lam</Typography>
+            {<PinForm />}
         </Fade>
       </Modal>
     </div>

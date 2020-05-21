@@ -50,7 +50,7 @@ const DateTime = () => {
         <Grid container spacing={2}>
             <Grid item>
                 <Typography variant="h1" className={classes.text}>{time}</Typography>
-                <Typography variant="h2" className={classes.text}>{date}</Typography>
+                <Typography variant="h3" className={classes.text}>{date}</Typography>
             </Grid>
         </Grid>
       </Paper>

@@ -20,7 +20,7 @@ const Loading = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={`${classes.root} loading-container`}>
       <CircularProgress className={classes.circleColor}/>
       <Typography variant="h5" className={classes.circleColor}>Welcome</Typography>
     </div>
