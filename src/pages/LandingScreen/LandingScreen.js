@@ -30,7 +30,7 @@ const LandingScreen = () => {
       <LoginModal />
       </Paper>
     </Grid>
-  );
+  )
 };
 
 export default LandingScreen;

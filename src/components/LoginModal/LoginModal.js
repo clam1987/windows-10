@@ -1,15 +1,17 @@
-import React, { useState, forwardRef, useRef } from 'react';
+import React, { useState, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import Typography from "@material-ui/core/Typography"
+import Typography from "@material-ui/core/Typography";
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
 import PinForm from "../../components/PinForm/PinForm";
 import MyAvatar from "../../components/MyAvatar/MyAvatar";
 import Wilson from "../../assets/json/Wilson.json";
 import DateTime from "../../components/DateTime/DateTime";
-import "./LoginModal.css"
+import LoginIcons from "../../components/LoginIcons/LoginIcons";
+import DesktopIcons from "../../components/DesktopIcons/DesktopIcons";
+import "./LoginModal.css";
 
 const useStyles = makeStyles((theme) => ({
     fullScreen: {
@@ -72,7 +74,6 @@ Fade.propTypes = {
 const SpringModal = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false)
 
   const handleOpen = () => {
     setOpen(true);
@@ -88,6 +89,7 @@ const handleClose = () => {
         react-spring
       </button>
       {open === true? null : <DateTime />}
+      {open === true? null : <DesktopIcons />}
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"
@@ -103,7 +105,8 @@ const handleClose = () => {
         <Fade in={open}>
             <MyAvatar profileName={Wilson.PicFileName} src={Wilson.AvatarPic} />
             <Typography variant="h3" className={`${classes.name} name-container`}>Wilson Lam</Typography>
-            {<PinForm />}
+            <PinForm />
+            <LoginIcons />
         </Fade>
       </Modal>
     </div>
