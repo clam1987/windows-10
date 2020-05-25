@@ -26,6 +26,7 @@ const TaskbarTime = () => {
     useEffect(() => {
         setInterval(() => {
             setTime(moment().format("LT"));
+            setDate(moment().format("L"));
         }, 1000);
     }, [time])
 
