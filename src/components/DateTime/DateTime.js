@@ -42,6 +42,7 @@ const DateTime = () => {
     useEffect(() => {
         setInterval(() => {
             setTime(moment().format("h:mm"));
+            setDate(moment().format("dddd, MMM Do"));
         }, 1000);
     }, [time])
   return (

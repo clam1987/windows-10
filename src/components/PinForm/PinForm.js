@@ -60,8 +60,8 @@ const PinForm = () => {
     const nameEl = document.querySelector(".name-container");
     e.preventDefault();
     if(input.input === "0000") {
-      avatarEl.style.paddingLeft = "9%"
-      nameEl.style.marginBottom = ".5em"
+      avatarEl.style.paddingLeft = "16%"
+      nameEl.style.marginBottom = ".965em"
       setLoading(true);
       setInput("")
       setInterval(() => {
